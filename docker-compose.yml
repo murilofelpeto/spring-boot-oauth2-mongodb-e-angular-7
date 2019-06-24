@@ -1,0 +1,42 @@
+version: '3.4'
+services:
+  db:
+    image: murilofelpeto/mongo-spring-boot-api
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    restart: always
+    build:
+      context: .
+      dockerfile: containers/db/Dockerfile
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=docker
+      - MONGO_INITDB_ROOT_PASSWORD=docker
+      - MONGO_INITDB_DATABASE=wsoauth2
+    ports:
+      - "27017:27017"
+    networks:
+      - api-network
+  spring-boot-api:
+    image: murilofelpeto/spring-boot-api
+    restart: always
+    build:
+      context: .
+      dockerfile: containers/app/Dockerfile
+    working_dir: /data/api
+    environment:
+      TZ: America/Sao_Paulo
+      SPRING_BOOT_ENVIRONMENT: Production
+    volumes:
+      - ./:/data/api
+      - ~/.m2:/root/.m2
+    command: mvn clean spring-boot:run
+    ports:
+      - "8080:8080"
+    links:
+      - db
+    depends_on:
+      - db
+    networks:
+      - api-network
+networks:
+    api-network:
+        driver: bridge
