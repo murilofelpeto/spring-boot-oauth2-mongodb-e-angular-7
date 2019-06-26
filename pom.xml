@@ -28,9 +28,29 @@
 		<!-- SPRING-BOOT -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<!-- SPRING-BOOT -->
+		<!-- SPRING DEV TOOLS -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- SPRING DEV TOOLS -->
+		<!-- SPRING TEST -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- SPRING TEST -->
+		<!-- MONGO -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		<!-- MONGO -->
 		<!-- SERIALIZATION -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
