@@ -1,8 +1,11 @@
 package br.com.murilo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import br.com.murilo.dto.UserDTO;
@@ -18,12 +21,16 @@ public class User implements Serializable {
 	private String lastName;
 	private String email;
 	
+	@DBRef(lazy = true)
+	private List<Role> roles = new ArrayList<>();
+	
 	public User() {}
 
-	public User(String firstName, String lastName, String email) {
+	public User(String firstName, String lastName, String email, List<Role> roles) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.roles = roles;
 	}
 
 	public User(UserDTO dto) {
@@ -63,6 +70,14 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 	@Override
