@@ -45,6 +45,19 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- SPRING TEST -->
+		<!-- SPRING SECURITY -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- SPRING SECURITY -->
+		<!-- SPRING OAUTH2 -->
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>2.3.4.RELEASE</version>
+		</dependency>
+		<!-- SPRING SECURITY -->
 		<!-- MONGO -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

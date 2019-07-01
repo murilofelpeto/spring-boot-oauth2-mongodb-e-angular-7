@@ -14,23 +14,28 @@ import br.com.murilo.dto.UserDTO;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private String id;
 	private String firstName;
 	private String lastName;
 	private String email;
-	
+	private String password;
+	private Boolean enable;
+
 	@DBRef(lazy = true)
 	private List<Role> roles = new ArrayList<>();
-	
-	public User() {}
 
-	public User(String firstName, String lastName, String email, List<Role> roles) {
+	public User() {
+	}
+
+	public User(String firstName, String lastName, String email, List<Role> roles, String password, Boolean enabled) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.roles = roles;
+		this.password = password;
+		this.enable = enabled;
 	}
 
 	public User(UserDTO dto) {
@@ -38,6 +43,18 @@ public class User implements Serializable {
 		this.firstName = dto.getFirstName();
 		this.lastName = dto.getLastName();
 		this.email = dto.getEmail();
+		this.enable = dto.getEnable();
+		this.password = dto.getPassword();
+	}
+
+	public User(User user) {
+		this.id = user.getId();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.email = user.getEmail();
+		this.roles = user.getRoles();
+		this.password = user.getPassword();
+		this.enable = user.getEnable();
 	}
 
 	public String getId() {
@@ -78,6 +95,22 @@ public class User implements Serializable {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Boolean getEnable() {
+		return enable;
+	}
+
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
 	}
 
 	@Override
