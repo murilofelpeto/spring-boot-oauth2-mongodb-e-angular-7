@@ -25,12 +25,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	@Override
-	public AuthenticationManager authenticationManager() throws Exception {
-		return super.authenticationManagerBean();
-	}
-
-	@Bean
 	DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 		provider.setPasswordEncoder(bCryptPasswordEncoder());
