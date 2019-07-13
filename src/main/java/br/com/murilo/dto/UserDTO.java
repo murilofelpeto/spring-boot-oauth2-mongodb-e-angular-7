@@ -1,7 +1,10 @@
 package br.com.murilo.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import br.com.murilo.domain.Role;
 import br.com.murilo.domain.User;
 
 public class UserDTO implements Serializable{
@@ -14,6 +17,7 @@ public class UserDTO implements Serializable{
 	private String email;
 	private String password;
 	private Boolean enable;
+	private List<Role> roles = new ArrayList<>();
 	
 	public UserDTO() {	}
 	
@@ -24,6 +28,7 @@ public class UserDTO implements Serializable{
 		this.email = user.getEmail();
 		this.password = user.getPassword();
 		this.enable = user.getEnable();
+		this.roles = user.getRoles();
 	}
 
 	public String getId() {
@@ -72,5 +77,13 @@ public class UserDTO implements Serializable{
 
 	public void setEnable(Boolean enable) {
 		this.enable = enable;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 }

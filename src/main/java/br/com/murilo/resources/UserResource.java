@@ -1,5 +1,6 @@
 package br.com.murilo.resources;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,5 +65,12 @@ public class UserResource {
 		User user = service.findById(id);
 		
 		return ResponseEntity.ok().body(user.getRoles());
+	}
+	
+	@GetMapping("/users/main")
+	public ResponseEntity<UserDTO> getUserMain(Principal principal){
+		UserDTO user = new UserDTO(service.findByEmail(principal.getName()));
+		user.setPassword("");
+		return ResponseEntity.ok().body(user);
 	}
 }

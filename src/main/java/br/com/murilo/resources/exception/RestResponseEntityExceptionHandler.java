@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import br.com.murilo.service.exception.ObjectAlreadyExistException;
 import br.com.murilo.service.exception.ObjectNotFoundException;
 
 @ControllerAdvice
@@ -17,6 +18,13 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Não encontrado", e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(status).body(err);
+	}
+	
+	@ExceptionHandler(ObjectAlreadyExistException.class)
+	public ResponseEntity<StandardError> bjectAlreadyExist(ObjectAlreadyExistException e, HttpServletRequest request) {
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Já existe", e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
 
