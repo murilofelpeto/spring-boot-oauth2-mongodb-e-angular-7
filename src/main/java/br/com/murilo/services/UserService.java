@@ -17,6 +17,7 @@ import br.com.murilo.repository.UserRepository;
 import br.com.murilo.repository.VerificationTokenRepository;
 import br.com.murilo.service.exception.ObjectAlreadyExistException;
 import br.com.murilo.service.exception.ObjectNotFoundException;
+import br.com.murilo.services.email.EmailService;
 
 @Service
 public class UserService {
@@ -32,6 +33,9 @@ public class UserService {
 
 	@Autowired
 	private PasswordEncoder encoder;
+	
+	@Autowired
+	private EmailService emailService;
 
 	public List<User> findAll() {
 		return repositorio.findAll();
@@ -63,7 +67,9 @@ public class UserService {
 		}
 
 		user.setRoles(Arrays.asList(roleRepository.findByRoleName("ROLE_USER").get()));
-		return create(user);
+		User rUser = create(user);
+		emailService.sendConfirmationHtmlEmail(rUser, null);
+		return rUser;
 	}
 
 	public void createVerificationTokenForUser(User user, String token) {

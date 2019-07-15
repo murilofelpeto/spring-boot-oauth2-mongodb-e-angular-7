@@ -98,12 +98,18 @@
 			<version>2.9.2</version>
 		</dependency>
 		<!-- SWAGGER -->
-		<!-- JUNIT -->
+		<!-- THYMELEAF -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		<!-- JUNIT -->
+		<!-- THYMELEAF -->
+		<!-- EMAIL -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<!-- EMAIL -->
 	</dependencies>
 
 	<build>
