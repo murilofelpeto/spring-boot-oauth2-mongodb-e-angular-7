@@ -64,7 +64,7 @@ public abstract class AbstractEmailService implements EmailService {
 			uuid = token.getToken();
 		}
 
-		String confirmationURL = this.contextPath + "/api/public/registration/users?token=" + uuid;
+		String confirmationURL = this.contextPath + "/api/public/registrationConfirm/users?token=" + uuid;
 		Context context = new Context();
 		context.setVariable("user", user);
 		context.setVariable("confirmationUrl", confirmationURL);

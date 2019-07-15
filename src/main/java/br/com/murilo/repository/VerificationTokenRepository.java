@@ -10,5 +10,5 @@ import br.com.murilo.domain.VerificationToken;
 public interface VerificationTokenRepository extends MongoRepository<VerificationToken, String> {
 
 	Optional<VerificationToken> findByToken(String token);
-	VerificationToken findByUser(User user);
+	Optional<VerificationToken> findByUser(User user);
 }

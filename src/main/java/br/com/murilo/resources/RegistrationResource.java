@@ -15,13 +15,13 @@ import br.com.murilo.resources.util.GenericResponse;
 import br.com.murilo.services.UserService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/public")
 public class RegistrationResource {
 
 	@Autowired
 	private UserService service;
 
-	@GetMapping("/public/registrationConfirm/users")
+	@GetMapping("/registrationConfirm/users")
 	public ResponseEntity<GenericResponse> confirmRegistrationUser(@RequestParam("token") String token) {
 		Object result = service.validateVerificationToken(token);
 		if (result == null) {
@@ -30,7 +30,13 @@ public class RegistrationResource {
 		return ResponseEntity.status(HttpStatus.SEE_OTHER).body(new GenericResponse("ERROR", result.toString()));
 	}
 
-	@PostMapping("/public/registration/users")
+	@GetMapping("/resendRegistrationToken/users")
+	public ResponseEntity<Void> resendRegistrationToken(@RequestParam("email") String email) {
+		service.generateNewVerificationToken(email);
+		return ResponseEntity.noContent().build();
+	}
+
+	@PostMapping("/registration/users")
 	public ResponseEntity<Void> registerUser(@RequestBody UserDTO userDTO) {
 		service.registerUser(userDTO);
 		return ResponseEntity.noContent().build();

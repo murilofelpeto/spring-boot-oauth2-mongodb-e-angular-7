@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import br.com.murilo.domain.Role;
 import br.com.murilo.domain.User;
 import br.com.murilo.repository.UserRepository;
-import br.com.murilo.service.exception.ObjectNotFoundException;
+import br.com.murilo.service.exception.ObjectNotEnabledException;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -30,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if (!user.isPresent()) {
 			throw new UsernameNotFoundException(String.format("Usuário não existe!"));
 		} else if (!user.get().getEnable()) {
-			throw new ObjectNotFoundException(String.format("Usuário não ativado!"));
+			throw new ObjectNotEnabledException(String.format("Usuário não ativado!"));
 		}
 		return new UserRepositoryUserDetails(user.get());
 	}

@@ -13,6 +13,7 @@ import br.com.murilo.domain.Role;
 import br.com.murilo.domain.User;
 import br.com.murilo.repository.RoleRepository;
 import br.com.murilo.repository.UserRepository;
+import br.com.murilo.repository.VerificationTokenRepository;
 
 @Configuration
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -25,9 +26,14 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
 	@Autowired
 	private PasswordEncoder encoder;
+	
+	@Autowired
+	private VerificationTokenRepository verificationTokenRepository;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
+		verificationTokenRepository.deleteAll();
+		
 		Role admin = new Role("ROLE_ADMIN");
 		Role user = new Role("ROLE_USER");
 

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title th:remove="all">Confirmar registro de usuário</title>
-	</head>
-	<body>
-		<div>
-			<h3>Caso você tenha criado o usuario</h3><br />
-			<p>
-				Clique no link abaixo para confirmar sua solicitação! <br />
-				<span th:text="${confirmationUrl}"></span>
-			</p>
-			<p>
-				Nome:
-				<span th:text="${user.firstName"></span>
-				<span th:text="${user.lastName"></span>
-			</p>
-		</div>
-	</body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title th:remove="all">Confirmar registro de usuário</title>
+</head>
+<body>
+	<div>
+		<h3>Caso você tenha criado o usuario</h3>
+		<br />
+		<p>
+			Clique no link abaixo para confirmar sua solicitação! <br /> <span
+				th:text="${confirmationUrl}"></span>
+		</p>
+		<p>
+			Nome: <span th:text="${user.firstName}"></span> <span
+				th:text="${user.lastName}"></span>
+		</p>
+	</div>
+</body>
 </html>

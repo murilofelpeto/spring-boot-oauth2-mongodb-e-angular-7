@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -67,6 +68,7 @@ public class UserService {
 		}
 
 		user.setRoles(Arrays.asList(roleRepository.findByRoleName("ROLE_USER").get()));
+		user.setEnable(false);
 		User rUser = create(user);
 		emailService.sendConfirmationHtmlEmail(rUser, null);
 		return rUser;
@@ -95,6 +97,15 @@ public class UserService {
 	public User findByEmail(String email) {
 		Optional<User> user = repositorio.findByEmail(email);
 		return user.orElseThrow(() -> new ObjectNotFoundException("Usuário " + email + " não encontrado!"));
+	}
+	
+	public VerificationToken generateNewVerificationToken(String email) {
+		User user = findByEmail(email);
+		Optional<VerificationToken> vToken = tokenRepository.findByUser(user);
+		vToken.get().updateToken(UUID.randomUUID().toString());
+		VerificationToken updateVerificationToken = tokenRepository.save(vToken.get());
+		emailService.sendConfirmationHtmlEmail(user, updateVerificationToken);
+		return updateVerificationToken;
 	}
 
 	private Boolean userExits(String email) {
