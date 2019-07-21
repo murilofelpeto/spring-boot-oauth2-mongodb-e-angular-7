@@ -15,8 +15,8 @@ services:
       - "27017:27017"
     networks:
       - api-network
-  spring-boot-api:
-    image: murilofelpeto/spring-boot-api
+  api:
+    image: murilofelpeto/spring-boot
     restart: always
     build:
       context: .

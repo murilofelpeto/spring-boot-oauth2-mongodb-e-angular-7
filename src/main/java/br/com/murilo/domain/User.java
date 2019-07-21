@@ -45,6 +45,7 @@ public class User implements Serializable {
 		this.email = dto.getEmail();
 		this.enable = dto.getEnable();
 		this.password = dto.getPassword();
+		this.roles = dto.getRoles();
 	}
 
 	public User(User user) {

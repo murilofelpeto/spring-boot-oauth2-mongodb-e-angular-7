@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.com.murilo.domain.Role;
 import br.com.murilo.domain.User;
 import br.com.murilo.domain.VerificationToken;
 import br.com.murilo.dto.UserDTO;
@@ -67,7 +68,10 @@ public class UserService {
 			throw new ObjectAlreadyExistException("Usuário já cadastrado");
 		}
 
-		user.setRoles(Arrays.asList(roleRepository.findByRoleName("ROLE_USER").get()));
+		Role role = new Role("ROLE_USER");
+		role = roleRepository.findByRoleName(role.getRoleName()).get();
+		
+		user.setRoles(Arrays.asList(role));
 		user.setEnable(false);
 		User rUser = create(user);
 		emailService.sendConfirmationHtmlEmail(rUser, null);

@@ -29,10 +29,10 @@ public abstract class AbstractEmailService implements EmailService {
 	@Autowired
 	private UserService userService;
 
-	@Value("default.sender")
+	@Value("${default.sender}")
 	private String sender;
 
-	@Value("default.url")
+	@Value("${default.url}")
 	private String contextPath;
 
 	@Override
