@@ -14,7 +14,6 @@ import br.com.murilo.dto.UserDTO;
 import br.com.murilo.resources.util.GenericResponse;
 import br.com.murilo.services.UserService;
 
-
 @RestController
 @RequestMapping("/api/public")
 public class RegistrationResource {
