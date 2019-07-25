@@ -9,3 +9,5 @@ deploy:
   run: 
     - "mvn clean install"
     - "mvn spring-boot:run"
+notifications:
+  email: false
