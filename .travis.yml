@@ -3,7 +3,8 @@ deploy:
   provider: heroku
   api_key:
     secure: FZCjlYB9UtHV1dJytjIbFageTDvQjMMdGEYnWoK9yyZh6hvNnHRIVoGg7NY1TJadCV1NHKR1FfUcRN2dIOSK6lOOcu7aHfFa/5NzIhP5vQutStT1sjKL6+aagTVt/SJd1Y9S0WflgXGJLc32+MHbsMOywovbg5y66AAaACC7NFWNGIXi6HdiyduY0ugsOYJn77kFOzdpUs3MPwmAO7uIToi9mS8kTfJ2cZQixNI+XBslVI+RhK8tEaE/f1P3m1Cz3iB3kQeghtHYeGIt7a9nUcODdEuSWLpC1TOby1u6FpzmFiA0or+C+34oJpnlJ7VM+Gx3mllJs6KQ0m7QgsUyjFVU5Z2Ct4coC0cpdBNDlnVGfNLITU5Oxz7/KMqMlaEta24wZqkDxjxdse5jerSOgAzIxXPnN5LFtX2x5cXe4jm6q9p4FV+42n884Nw4O8i+kKBUESdFGQ4bzQUAg+W/YKzJrqwZJbUrs49gepXbBicCxXLExwcpneGYRkYTBtr87KYWF94FfMGaPLyoYFt2sPPBa6YpNpaRk/f142YTogM0s19mHU8nKFliMYLSUisqOXLuXYJp7VGwfj7iJbgKuV1vflRkgykRLXaxj11uEyMgc3znaP4I0h+J01B2VsNQIgyI839o5zMbsaYuKnIsWxw1+wgXS9Ro8ETz4ooVh2c=
-    app: spring-boot-mongo-api
+    app: 
+      - spring-boot-mongo-api
     on:
       branch: master
     run: 
