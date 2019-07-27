@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   db:
-    image: murilofelpeto/mongo-spring-boot-api
+    image: murilofelpeto/udemy-mongodb-spring-boot-with-angular
     command: mongod --smallfiles --logpath=/dev/null # --quiet
     restart: always
     build:
@@ -16,7 +16,7 @@ services:
     networks:
       - api-network
   api:
-    image: murilofelpeto/spring-boot
+    image: murilofelpeto/udemy-api-spring-boot-with-angular
     restart: always
     build:
       context: .
