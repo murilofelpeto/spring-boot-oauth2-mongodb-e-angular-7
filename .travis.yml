@@ -1,7 +1,6 @@
 language: java
-script:
-  - docker-compose build
 before_deploy:
+  - docker-compose build
   - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
   script:
     docker push murilofelpeto/udemy-mongodb-spring-boot-with-angular;
