@@ -1,10 +1,4 @@
 language: java
-before_deploy:
-  - docker-compose build
-  - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
-  script:
-    docker push murilofelpeto/udemy-mongodb-spring-boot-with-angular;
-    docker push murilofelpeto/udemy-api-spring-boot-with-angular;
 deploy:
   provider: heroku
   api_key:
